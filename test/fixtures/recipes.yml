@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dishname: MyString
+  cal: 1
+  intruction: MyString
+  recipebook: one
+
+two:
+  dishname: MyString
+  cal: 1
+  intruction: MyString
+  recipebook: two
