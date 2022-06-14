@@ -11,5 +11,9 @@ Rails.application.routes.draw do
       resources :recipes
  
     end
+    get '/recipes', to: 'recipes#all_recipes'
+    get '/recipes/:id', to: 'recipes#find_recipes'
+    
+
   end
 end

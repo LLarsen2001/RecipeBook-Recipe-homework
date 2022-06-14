@@ -1,6 +1,14 @@
 class Api::RecipesController < ApplicationController
-    before_action :set_recipebook
+    before_action :set_recipebook, except: [:all_recipes, :find_recipes]
     before_action :set_recipe, only: [:show, :update, :destroy]
+
+    def all_recipes
+        render json: Recipe.all
+    end
+
+    def find_recipes
+        render json: Recipe.find(params[:id])
+    end
 
     def index 
         render json: @recipebook.recipes
