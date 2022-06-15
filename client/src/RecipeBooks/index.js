@@ -6,6 +6,7 @@ const Recipebooks = () => {
             <div className='navbar'>
                 <Link to='/recipebooks'>Recipebooks</Link>
                 <Link to='/recipebooks/new'>New Recipebook</Link>
+                <Link to='/recipebooks/:recipebook_id'>Show recipe books and recipes</Link>
             </div>
             <div>
                 <Outlet />

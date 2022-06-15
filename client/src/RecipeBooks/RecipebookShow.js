@@ -10,11 +10,11 @@ const RecipebookShow = () => {
         getRecipebookData()
     }, [])
 
-    const getRecipebookData = async () => {
+    const getRecipebookData = async (id) => {
         try {
-            let recipebookRes = await axios.get(`/api/recipes/${id}`)
+            let recipebookRes = await axios.get(`/api/recipebooks/${id}`)
             Recipebook(recipebookRes.data)
-            let recipesRes = await axios.get(`/api/recipes/${id}/recipes`)
+            let recipesRes = await axios.get(`/api/recipebooks/${id}/recipes`)
             setRecipes(recipesRes.data)
         } catch (err) {
             alert('error occured getting Data')
@@ -23,7 +23,7 @@ const RecipebookShow = () => {
     return (
         <div>
             <h1>RecipebookShow</h1>
-            <Link to='/recipes'>back to recipes</Link>
+            <Link to='/recipebooks'>back to recipebooks</Link>
             <p>id: {id}</p>
             <p>Recipebook: {JSON.stringify(recipebook)}</p>
             <p>Recipes: {JSON.stringify(recipes)}</p>

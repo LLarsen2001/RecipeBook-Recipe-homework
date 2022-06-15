@@ -4,21 +4,30 @@ import { useNavigate } from "react-router";
 
 const RecipebookList = () => {
     const [recipebooks, setRecipebooks] = useState([]);
+    const [recipes, setRecipes] = useState([])
+    const [show, setShow] = useState(false)
     const navigate = useNavigate()
     useEffect(() => {
         getRecipebooks();
     }, []);
 
+
     const renderRecipebooks = () => {
         return recipebooks.map((c) => {
             return (
                 <div className="component">
-                    <p>{c.name}</p>
-                    <button onClick={() => navigate(`/recipebooks/${c.id}`)}>show</button>
+                    <p>{c.title}</p>
+                    <button onClick={() => setShow(!show)}>show</button>
+                    {show && (
+                        <>
+                            <p><b>Title:</b>{c.title}. <b>Type of Recipe:</b>{c.recipetype}.</p>
+                        </>
+                    )}
                 </div>
             );
         });
     };
+
 
     const getRecipebooks = async () => {
         try {
@@ -36,4 +45,4 @@ const RecipebookList = () => {
     );
 };
 
-export default RecipebookList;
+export default RecipebookList
