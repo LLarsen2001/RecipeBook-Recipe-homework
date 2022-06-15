@@ -39,5 +39,5 @@ const DataProvider = (props) => {
             {props.children}
         </DataContext.Provider>
     );
-}
-export default DataProvider
+};
+export default DataProvider;
