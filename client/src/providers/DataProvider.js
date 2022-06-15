@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export const DataContext = React.createContext();
@@ -10,7 +10,7 @@ const DataProvider = (props) => {
         getRecipebooks();
     }, []);
 
-    const getRecipebooks = () => {
+    const getRecipebooks = async () => {
         try {
             let res = await axios.get('/api/recipebooks')
             setRecipebooks(res.data)
@@ -22,14 +22,14 @@ const DataProvider = (props) => {
 
     const updateRecipebook = async (recipebook) => {
         if (recipebook.title === "" || !recipebook.id) {
-            alert('bad Book name')
+            alert('bad Book name');
             return;
         } try {
             let res = await axios.put(`/api/recipebooks/${recipebook.id}`, recipebook);
-            let updatedRecipebook = recipebook.map((a) => a.id === res.data.id ? res.data : a)
-            setRecipebooks(updatedRecipebook)
+            let updatedRecipebook = recipebook.map((a) => a.id === res.data.id ? res.data : a);
+            setRecipebooks(updatedRecipebook);
         } catch (err) {
-            alert('error has occured in the updateRecipebook')
+            alert('error has occured in the updateRecipebook');
         }
 
     }
@@ -39,7 +39,5 @@ const DataProvider = (props) => {
             {props.children}
         </DataContext.Provider>
     );
-
-    export default DataProvider;
-
-
+}
+export default DataProvider
