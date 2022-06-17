@@ -4,9 +4,9 @@ import { useNavigate } from "react-router";
 
 const RecipebookList = () => {
     const [recipebooks, setRecipebooks] = useState([]);
-    const [recipes, setRecipes] = useState([])
+
     const [show, setShow] = useState(false)
-    const navigate = useNavigate()
+
     useEffect(() => {
         getRecipebooks();
     }, []);
@@ -16,13 +16,8 @@ const RecipebookList = () => {
         return recipebooks.map((c) => {
             return (
                 <div className="component">
-                    <p>{c.title}</p>
-                    <button onClick={() => setShow(!show)}>show</button>
-                    {show && (
-                        <>
-                            <p><b>Title:</b>{c.title}. <b>Type of Recipe:</b>{c.recipetype}.</p>
-                        </>
-                    )}
+                    <h2>{c.title}</h2>
+                    <p><b>Title:</b>{c.title}. <b>Type of Recipe:</b>{c.recipetype}.</p>
                 </div>
             );
         });
@@ -39,8 +34,14 @@ const RecipebookList = () => {
     };
     return (
         <div>
+
             <h1>Recipebook List</h1>
-            {renderRecipebooks()}
+            <button onClick={() => setShow(!show)}>show</button>
+            {show && (
+                <>
+                    {renderRecipebooks()}
+                </>
+            )}
         </div>
     );
 };

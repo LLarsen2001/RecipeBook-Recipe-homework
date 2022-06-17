@@ -20,6 +20,20 @@ const DataProvider = (props) => {
         }
     }
 
+    const addRecipebook = async (recipebook) => {
+        if (!recipebook.title || recipebook.title === '') {
+            alert('bad recipebook data')
+            return
+        }
+        try {
+            let res = await axios.post('/api/recipebooks', recipebook)
+            setRecipebooks([res.data, ...recipebooks])
+        }
+        catch (err) {
+            alert('error occured in the add recipebooks')
+        }
+    }
+
     const updateRecipebook = async (recipebook) => {
         if (recipebook.title === "" || !recipebook.id) {
             alert('bad Book name');
@@ -34,8 +48,17 @@ const DataProvider = (props) => {
 
     }
 
+    const deleteRecipebook = async (id) => {
+        try {
+            await axios.delete(`/api/recipebooks/${id}`);
+            setRecipebooks(recipebooks.filter((e) => e.id !== id))
+        } catch (err) {
+            alert('error has occured in the delete recipebook')
+        }
+    }
+
     return (
-        <DataContext.Provider value={{ getRecipebooks, updateRecipebook }}>
+        <DataContext.Provider value={{ getRecipebooks, updateRecipebook, addRecipebook, deleteRecipebook }}>
             {props.children}
         </DataContext.Provider>
     );
